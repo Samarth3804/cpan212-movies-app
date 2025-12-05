@@ -1,0 +1,23 @@
+<%- include('partials/header') %>
+
+<h1>Add New Movie</h1>
+
+<% if (errors.length > 0) { %>
+  <% errors.forEach(err => { %>
+    <div class="alert error"><%= err %></div>
+  <% }) %>
+<% } %>
+
+<form action="/add" method="POST">
+  <input type="text" name="name" placeholder="Movie Name" value="<%= name %>" required>
+  <textarea name="description" placeholder="Description" required><%= description %></textarea>
+  <input type="number" name="year" placeholder="Year (e.g. 2024)" value="<%= year %>" required>
+  <input type="text" name="genres" placeholder="Genres (Action, Comedy...)" value="<%= genres %>" required>
+  <input type="number" name="rating" min="1" max="10" placeholder="Rating 1-10" value="<%= rating %>" required>
+  <input type="text" name="poster" placeholder="Poster URL (optional)" value="<%= poster %>">
+  <button type="submit">Add Movie</button>
+</form>
+
+<a href="/">← Back</a>
+
+<%- include('partials/footer') %>

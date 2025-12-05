@@ -1,0 +1,15 @@
+<%- include('partials/header') %>
+<h2>Register</h2>
+<% if (typeof errors !== 'undefined') { %>
+  <% errors.forEach(err => { %>
+    <div class="alert error"><%= err %></div>
+  <% }) %>
+<% } %>
+
+<form action="/register" method="POST">
+  <input type="text" name="username" placeholder="Username" value="<%= username || '' %>" required>
+  <input type="password" name="password" placeholder="Password" required>
+  <input type="password" name="password2" placeholder="Confirm Password" required>
+  <button>Register</button>
+</form>
+<%- include('partials/footer') %>

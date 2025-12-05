@@ -1,0 +1,24 @@
+<%- include('partials/header') %>
+
+<h1>All Movies</h1>
+
+<% if (movies.length === 0) { %>
+  <p>No movies yet. <a href="/add">Add one!</a></p>
+<% } else { %>
+  <div class="movie-list">
+    <% movies.forEach(movie => { %>
+      <div class="movie-card">
+        <h3><a href="/movie/<%= movie._id %>"><%= movie.name %> (<%= movie.year %>)</a></h3>
+        <p>Rating: <%= movie.rating %>/10</p>
+        <% if (userId && movie.createdBy.toString() === userId) { %>
+          <a href="/edit/<%= movie._id %>">Edit</a>
+          <form action="/delete/<%= movie._id %>" method="POST" style="display:inline;">
+            <button type="submit">Delete</button>
+          </form>
+        <% } %>
+      </div>
+    <% }) %>
+  </div>
+<% } %>
+
+<%- include('partials/footer') %>

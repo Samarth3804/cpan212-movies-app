@@ -1,0 +1,21 @@
+<%- include('partials/header') %>
+
+<h1>Edit Movie</h1>
+
+<% if (errors?.length > 0) { %>
+  <% errors.forEach(err => { %>
+    <div class="alert error"><%= err %></div>
+  <% }) %>
+<% } %>
+
+<form action="/edit/<%= movie._id %>" method="POST">
+  <input type="text" name="name" value="<%= movie.name %>" required>
+  <textarea name="description" required><%= movie.description %></textarea>
+  <input type="number" name="year" value="<%= movie.year %>" required>
+  <input type="text" name="genres" value="<%= movie.genres %>" required>
+  <input type="number" name="rating" min="1" max="10" value="<%= movie.rating %>" required>
+  <input type="text" name="poster" value="<%= movie.poster %>" placeholder="Poster URL">
+  <button type="submit">Update Movie</button>
+</form>
+
+<%- include('partials/footer') %>
